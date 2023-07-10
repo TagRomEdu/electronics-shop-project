@@ -24,7 +24,7 @@ class Item:
 
     @name.setter
     def name(self, name):
-        self.__name = name
+        self.__name = name[:10]
 
     def calculate_total_price(self) -> float:
         """
