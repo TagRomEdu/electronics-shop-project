@@ -1,3 +1,6 @@
+from csv import DictReader
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -39,3 +42,11 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.pay_rate
+
+    @classmethod
+    def instantiate_from_csv(cls):
+        with open('items.csv') as file:
+            reader = DictReader(file)
+            for object in reader:
+                cls.all.append(object)
+        return cls.all
