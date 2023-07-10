@@ -1,4 +1,8 @@
 from csv import DictReader
+import os
+
+
+CSV_PATH = os.path.join('/', '0_programming_python', 'electronics-shop-project', 'src', 'items.csv')
 
 
 class Item:
@@ -22,11 +26,11 @@ class Item:
         self.all.append(self)
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.__name
 
     @name.setter
-    def name(self, name):
+    def name(self, name: str) -> None:
         self.__name = name[:10]
 
     def calculate_total_price(self) -> float:
@@ -45,8 +49,16 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        with open('items.csv') as file:
+        cls.all = []
+        dict_lst = []
+        with open(CSV_PATH) as file:
             reader = DictReader(file)
-            for object in reader:
-                cls.all.append(object)
+            for reads in reader:
+                dict_lst.append(reads)
+        for dictnry in dict_lst:
+            cls(dictnry['name'], dictnry['price'], dictnry['quantity'])
         return cls.all
+
+    @staticmethod
+    def string_to_number(num: str) -> int:
+        return int(float(num))
