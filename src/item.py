@@ -2,7 +2,7 @@ from csv import DictReader
 import os
 
 
-CSV_PATH = os.path.join('/', '0_programming_python', 'electronics-shop-project', 'src', 'items.csv')
+CSV_PATH = os.path.join(os.path.dirname(__file__), 'items.csv')
 
 
 class Item:
