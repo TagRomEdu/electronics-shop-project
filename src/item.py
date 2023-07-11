@@ -48,19 +48,15 @@ class Item:
         self.price *= self.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls) -> list:
+    def instantiate_from_csv(cls) -> None:
         """
         Собирает инфу из CSV файла и создаёт на её основе экземпляр класса
         """
         cls.all = []
-        dict_lst = []
         with open(CSV_PATH) as file:
             reader = DictReader(file)
             for reads in reader:
-                dict_lst.append(reads)
-        for dictnry in dict_lst:
-            cls(dictnry['name'], dictnry['price'], dictnry['quantity'])
-        return cls.all
+                cls(reads['name'], reads['price'], reads['quantity'])
 
     @staticmethod
     def string_to_number(num: str) -> int:
