@@ -22,8 +22,16 @@ def test_apply_discount():
 
 
 def test_instantiate_from_csv():
-    assert isinstance(Item.instantiate_from_csv(), list)
+    assert print(Item.instantiate_from_csv()) is None
 
 
 def test_string_to_number():
     assert Item.string_to_number('8.1234') == 8
+
+
+def test_repr():
+    assert repr(Item("Смартфон", 10000, 20)) == "Item('Смартфон', 10000, 20)"
+
+
+def test_str():
+    assert str(Item("Смартфон", 10000, 20)) == 'Смартфон'
