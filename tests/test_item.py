@@ -4,7 +4,8 @@ from src.item import Item
 ex1 = Item("name", 10, 5)
 ex2 = Item("Смартфон", 10000, 20)
 
-def test_Item():
+
+def test_item():
     assert ex1.name == "name"
     assert ex1.price == 10
     assert ex1.quantity == 5
@@ -35,6 +36,7 @@ def test_repr():
 
 def test_str():
     assert str(ex2) == 'Смартфон'
+
 
 def test_add():
     assert ex1 + ex2 == 25
