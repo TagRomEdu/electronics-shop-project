@@ -70,3 +70,8 @@ class Item:
         Переводит строку в число
         """
         return int(float(num))
+
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        return Exception("Wrong!")
