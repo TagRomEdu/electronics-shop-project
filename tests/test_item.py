@@ -2,13 +2,14 @@ from src.item import Item
 
 
 ex1 = Item("name", 10, 5)
+ex2 = Item("Смартфон", 10000, 20)
 
 
-def test_Item():
+def test_item():
     assert ex1.name == "name"
     assert ex1.price == 10
     assert ex1.quantity == 5
-    assert len(Item.all) == 1
+    assert len(Item.all) == 2
 
 
 def test_calculate_total_price():
@@ -30,8 +31,12 @@ def test_string_to_number():
 
 
 def test_repr():
-    assert repr(Item("Смартфон", 10000, 20)) == "Item('Смартфон', 10000, 20)"
+    assert repr(ex2) == "Item('Смартфон', 10000, 20)"
 
 
 def test_str():
-    assert str(Item("Смартфон", 10000, 20)) == 'Смартфон'
+    assert str(ex2) == 'Смартфон'
+
+
+def test_add():
+    assert ex1 + ex2 == 25
