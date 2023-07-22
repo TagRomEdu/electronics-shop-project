@@ -74,4 +74,4 @@ class Item:
     def __add__(self, other):
         if isinstance(other, Item):
             return self.quantity + other.quantity
-        return Exception("Wrong!")
+        raise ValueError("It's only for Item objects!")
