@@ -3,28 +3,22 @@ from src.item import Item
 
 class MixinChange:
     """Миксин класс для реализации смены языка клавиатуры"""
-    lang = 'EN'
-
     def __init__(self):
-        self.language = self.lang
+        self.__language = 'EN'
+
+    @property
+    def language(self):
+        return self.__language
 
     def change_lang(self):
-        if self.language == 'EN':
-            self.language = 'RU'
-            return self.language
-        self.language = 'EN'
-        return self.language
+        if self.__language == 'EN':
+            self.__language = 'RU'
+            return self
+        self.__language = 'EN'
+        return self
 
 
 class Keyboard(Item, MixinChange):
     def __init__(self, name, price, quantity):
         super().__init__(name, price, quantity)
-        self.__language = 'EN'
-
-
-kb = Keyboard('Dark Project KD87A', 9600, 5)
-print(str(kb))
-print(kb.__dict__)
-print(kb.change_lang())
-print(kb.__dict__)
-print(kb.change_lang())
+        MixinChange.__init__(self)
