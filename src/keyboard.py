@@ -11,10 +11,7 @@ class MixinChange:
         return self.__language
 
     def change_lang(self):
-        if self.__language == 'EN':
-            self.__language = 'RU'
-            return self
-        self.__language = 'EN'
+        self.__language = 'RU' if self.__language == 'EN' else 'EN'
         return self
 
 
