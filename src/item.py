@@ -58,11 +58,16 @@ class Item:
         """
         Собирает инфу из CSV файла и создаёт на её основе экземпляр класса
         """
-        cls.all = []
-        with open(CSV_PATH) as file:
-            reader = DictReader(file)
-            for reads in reader:
-                cls(reads['name'], reads['price'], reads['quantity'])
+        try:
+            cls.all = []
+            with open(CSV_PATH) as file:
+                reader = DictReader(file)
+                for reads in reader:
+                    cls(reads['name'], reads['price'], reads['quantity'])
+        except FileNotFoundError:
+            print("Отсутствует файл item.csv")
+        except KeyError:
+            print("Файл item.csv поврежден")
 
     @staticmethod
     def string_to_number(num: str) -> int:
