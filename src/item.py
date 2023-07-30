@@ -3,10 +3,8 @@ from src.ifc import InstantiateCSVError
 import os
 
 
-CSV_PATH = os.path.join(os.path.dirname(__file__), 'items.csv')
-
-
 class Item:
+    CSV_PATH = os.path.join(os.path.dirname(__file__), 'items.csv')
     """
     Класс для представления товара в магазине.
     """
@@ -61,14 +59,14 @@ class Item:
         """
         try:
             cls.all = []
-            with open(CSV_PATH) as file:
+            with open(cls.CSV_PATH) as file:
                 reader = DictReader(file)
                 for reads in reader:
                     cls(reads['name'], reads['price'], reads['quantity'])
         except FileNotFoundError:
-            print("Отсутствует файл item.csv")
+            print("Отсутствует файл items.csv")
         except KeyError:
-            raise InstantiateCSVError
+            raise InstantiateCSVError from None
 
     @staticmethod
     def string_to_number(num: str) -> int:
