@@ -1,4 +1,8 @@
+import pytest
+import os
+
 from src.item import Item
+from src.ifc import InstantiateCSVError
 
 
 ex1 = Item("name", 10, 5)
@@ -24,6 +28,12 @@ def test_apply_discount():
 
 def test_instantiate_from_csv():
     assert print(Item.instantiate_from_csv()) is None
+
+
+def test_instantiate_from_csv_err():
+    Item.CSV_PATH = os.path.join(os.path.dirname(__file__), 'items_2.csv')
+    with pytest.raises(InstantiateCSVError):
+        ex1.instantiate_from_csv()
 
 
 def test_string_to_number():
