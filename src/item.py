@@ -1,4 +1,5 @@
 from csv import DictReader
+from src.ifc import InstantiateCSVError
 import os
 
 
@@ -67,7 +68,7 @@ class Item:
         except FileNotFoundError:
             print("Отсутствует файл item.csv")
         except KeyError:
-            print("Файл item.csv поврежден")
+            raise InstantiateCSVError
 
     @staticmethod
     def string_to_number(num: str) -> int:
